@@ -1,0 +1,60 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "uspstorageadf"
+		},
+		"LS_ADLSGen2_SP_servicePrincipalCredential": {
+			"value": ""
+		},
+		"LS_Azure_SQL_servicePrincipalCredential": {
+			"value": ""
+		},
+		"LS_OSELocal_SQL_DB_password": {
+			"value": ""
+		},
+		"LS_abksynapsecontainer_accountKey": {
+			"value": ""
+		},
+		"LS_ADLSGen2_SP_properties_typeProperties_url": {
+			"value": "https://abksynapseadlsgen2.dfs.core.windows.net/"
+		},
+		"LS_ADLSGen2_SP_properties_typeProperties_tenant": {
+			"value": "f6edfab2-76ae-4e2e-9d65-024f6af3b8dc"
+		},
+		"LS_ADLSGen2_SP_properties_typeProperties_servicePrincipalId": {
+			"value": "666d116f-59d3-407a-908d-50617c3ef8c6"
+		},
+		"LS_Azure_SQL_properties_typeProperties_server": {
+			"value": "osedbserverlocal.database.windows.net"
+		},
+		"LS_Azure_SQL_properties_typeProperties_database": {
+			"value": "oselocaltxdb_S33"
+		},
+		"LS_Azure_SQL_properties_typeProperties_servicePrincipalId": {
+			"value": "0ec1cb2f-e95d-476d-923a-f164c3ae9c65"
+		},
+		"LS_Azure_SQL_properties_typeProperties_tenant": {
+			"value": "f6edfab2-76ae-4e2e-9d65-024f6af3b8dc"
+		},
+		"LS_OSELocal_SQL_DB_properties_typeProperties_server": {
+			"value": "osedbserverlocal.database.windows.net"
+		},
+		"LS_OSELocal_SQL_DB_properties_typeProperties_database": {
+			"value": "@{linkedService().DBName}"
+		},
+		"LS_OSELocal_SQL_DB_properties_typeProperties_userName": {
+			"value": "adminuser"
+		},
+		"LS_abksynapsecontainer_properties_typeProperties_url": {
+			"value": "https://abksynapseadlsgen2.dfs.core.windows.net/"
+		},
+		"Tr_CopyTestDB_properties_CopyTestDB_parameters_DBName": {
+			"value": "oselocaltxdb_S33 "
+		},
+		"Tr_CopyTestDB_properties_CopyTestDB_parameters_TableName": {
+			"value": "t1"
+		}
+	}
+}
