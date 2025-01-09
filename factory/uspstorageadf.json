@@ -1,0 +1,9 @@
+{
+	"name": "uspstorageadf",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "e578c62d-b8cc-4158-b3f6-91fd94d1b1cb",
+		"tenantId": "f6edfab2-76ae-4e2e-9d65-024f6af3b8dc"
+	}
+}

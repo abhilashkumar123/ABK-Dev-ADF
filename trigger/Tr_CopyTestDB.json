@@ -1,0 +1,39 @@
+{
+	"name": "Tr_CopyTestDB",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Stopped",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "CopyTestDB",
+					"type": "PipelineReference"
+				},
+				"parameters": {
+					"DBName": "oselocaltxdb_S33 ",
+					"TableName": "t1"
+				}
+			},
+			{
+				"pipelineReference": {
+					"referenceName": "ExeCopyTestDB",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Week",
+				"interval": 15,
+				"startTime": "2024-08-01T05:20:00",
+				"timeZone": "India Standard Time",
+				"schedule": {
+					"weekDays": [
+						"Sunday"
+					]
+				}
+			}
+		}
+	}
+}

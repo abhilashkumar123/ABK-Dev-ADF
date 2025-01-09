@@ -1,0 +1,18 @@
+{
+	"name": "LS_Azure_SQL",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "AzureSqlDatabase",
+		"typeProperties": {
+			"server": "osedbserverlocal.database.windows.net",
+			"database": "oselocaltxdb_S33",
+			"encrypt": "mandatory",
+			"trustServerCertificate": false,
+			"authenticationType": "ServicePrincipal",
+			"servicePrincipalId": "0ec1cb2f-e95d-476d-923a-f164c3ae9c65",
+			"tenant": "f6edfab2-76ae-4e2e-9d65-024f6af3b8dc",
+			"encryptedCredential": "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIkRBVEFGQUNUT1JZQEJFNDE1N0Y5LUE0QjEtNDMzNy1BNTcwLTZCN0ZCNTkzQzE3N183YTMxYjU0Yy05Njc3LTQ5ZmQtOTc0Yy1kZGFiZjk5MmVmYTciDQp9"
+		}
+	}
+}

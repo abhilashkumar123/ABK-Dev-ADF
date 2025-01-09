@@ -1,0 +1,64 @@
+{
+	"name": "ExeCopyTestDB",
+	"properties": {
+		"activities": [
+			{
+				"name": "ForEach1",
+				"type": "ForEach",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@variables('TableName')",
+						"type": "Expression"
+					},
+					"isSequential": true,
+					"activities": [
+						{
+							"name": "Execute Pipeline1",
+							"type": "ExecutePipeline",
+							"dependsOn": [],
+							"policy": {
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"pipeline": {
+									"referenceName": "CopyTestDB",
+									"type": "PipelineReference"
+								},
+								"waitOnCompletion": true,
+								"parameters": {
+									"DBName": {
+										"value": "@variables('DBName')",
+										"type": "Expression"
+									},
+									"TableName": {
+										"value": "@item()",
+										"type": "Expression"
+									}
+								}
+							}
+						}
+					]
+				}
+			}
+		],
+		"variables": {
+			"DBName": {
+				"type": "String",
+				"defaultValue": "oselocaltxdb_S33"
+			},
+			"TableName": {
+				"type": "Array",
+				"defaultValue": [
+					"test",
+					"test1"
+				]
+			}
+		},
+		"annotations": [],
+		"lastPublishTime": "2024-07-29T05:38:42Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}
