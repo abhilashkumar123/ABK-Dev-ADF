@@ -146,6 +146,24 @@
 					},
 					"LS_abksynapsecontainer_properties_typeProperties_url": {
 						"value": "[parameters('LS_abksynapsecontainer_properties_typeProperties_url')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "uspstorageadf_ArmTemplate_1",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2024-03-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_1.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
 					},
 					"Tr_CopyTestDB_properties_CopyTestDB_parameters_DBName": {
 						"value": "[parameters('Tr_CopyTestDB_properties_CopyTestDB_parameters_DBName')]"
@@ -155,7 +173,9 @@
 					}
 				}
 			},
-			"dependsOn": []
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'uspstorageadf_ArmTemplate_0')]"
+			]
 		}
 	]
 }

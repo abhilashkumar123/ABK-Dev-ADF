@@ -1,0 +1,67 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "uspstorageadf"
+		},
+		"Tr_CopyTestDB_properties_CopyTestDB_parameters_DBName": {
+			"type": "string",
+			"defaultValue": "oselocaltxdb_S33 "
+		},
+		"Tr_CopyTestDB_properties_CopyTestDB_parameters_TableName": {
+			"type": "string",
+			"defaultValue": "t1"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/Tr_CopyTestDB')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"runtimeState": "Stopped",
+				"pipelines": [
+					{
+						"pipelineReference": {
+							"referenceName": "CopyTestDB",
+							"type": "PipelineReference"
+						},
+						"parameters": {
+							"DBName": "[parameters('Tr_CopyTestDB_properties_CopyTestDB_parameters_DBName')]",
+							"TableName": "[parameters('Tr_CopyTestDB_properties_CopyTestDB_parameters_TableName')]"
+						}
+					},
+					{
+						"pipelineReference": {
+							"referenceName": "ExeCopyTestDB",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					}
+				],
+				"type": "ScheduleTrigger",
+				"typeProperties": {
+					"recurrence": {
+						"frequency": "Week",
+						"interval": 15,
+						"startTime": "2024-08-01T05:20:00",
+						"timeZone": "India Standard Time",
+						"schedule": {
+							"weekDays": [
+								"Sunday"
+							]
+						}
+					}
+				}
+			},
+			"dependsOn": []
+		}
+	]
+}

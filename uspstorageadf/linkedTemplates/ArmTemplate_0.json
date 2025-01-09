@@ -66,14 +66,6 @@
 		"LS_abksynapsecontainer_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://abksynapseadlsgen2.dfs.core.windows.net/"
-		},
-		"Tr_CopyTestDB_properties_CopyTestDB_parameters_DBName": {
-			"type": "string",
-			"defaultValue": "oselocaltxdb_S33 "
-		},
-		"Tr_CopyTestDB_properties_CopyTestDB_parameters_TableName": {
-			"type": "string",
-			"defaultValue": "t1"
 		}
 	},
 	"variables": {
@@ -93,6 +85,29 @@
 						"userProperties": [],
 						"typeProperties": {
 							"waitTimeInSeconds": 10
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"annotations": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/pipeline2')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Wait2",
+						"type": "Wait",
+						"dependsOn": [],
+						"userProperties": [],
+						"typeProperties": {
+							"waitTimeInSeconds": 1
 						}
 					}
 				],
@@ -1103,52 +1118,6 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/pipelines/CopyTestDB')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Tr_CopyTestDB')]",
-			"type": "Microsoft.DataFactory/factories/triggers",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"runtimeState": "Stopped",
-				"pipelines": [
-					{
-						"pipelineReference": {
-							"referenceName": "CopyTestDB",
-							"type": "PipelineReference"
-						},
-						"parameters": {
-							"DBName": "[parameters('Tr_CopyTestDB_properties_CopyTestDB_parameters_DBName')]",
-							"TableName": "[parameters('Tr_CopyTestDB_properties_CopyTestDB_parameters_TableName')]"
-						}
-					},
-					{
-						"pipelineReference": {
-							"referenceName": "ExeCopyTestDB",
-							"type": "PipelineReference"
-						},
-						"parameters": {}
-					}
-				],
-				"type": "ScheduleTrigger",
-				"typeProperties": {
-					"recurrence": {
-						"frequency": "Week",
-						"interval": 15,
-						"startTime": "2024-08-01T05:20:00",
-						"timeZone": "India Standard Time",
-						"schedule": {
-							"weekDays": [
-								"Sunday"
-							]
-						}
-					}
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/pipelines/CopyTestDB')]",
-				"[concat(variables('factoryId'), '/pipelines/ExeCopyTestDB')]"
 			]
 		}
 	]
